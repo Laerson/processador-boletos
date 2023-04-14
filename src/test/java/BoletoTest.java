@@ -31,4 +31,12 @@ public class BoletoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Id can`t be empty");
     }
+
+    @Test
+    //Two boletos with same id are equal
+    public void sameId() {
+        Boleto boleto1 = new Boleto("123", LocalDate.now(), 1_00);
+        Boleto boleto2 = new Boleto("123", LocalDate.now(), 1_00);
+        assertThat(boleto1).isEqualTo(boleto2);
+    }
 }
