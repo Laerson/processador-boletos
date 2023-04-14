@@ -19,4 +19,16 @@ public class BoletoTest {
                 .hasMessage("Value must be positive");
 
     }
+
+    @Test
+    //Id can`t be empty
+    public void emptyId() {
+        assertThatThrownBy(() -> new Boleto("", LocalDate.now(), 1_00))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Id can`t be empty");
+
+        assertThatThrownBy(() -> new Boleto(null, LocalDate.now(), 1_00))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Id can`t be empty");
+    }
 }
