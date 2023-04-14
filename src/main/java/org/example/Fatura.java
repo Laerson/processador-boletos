@@ -11,6 +11,9 @@ public class Fatura {
         if (value < 0) {
             throw new IllegalArgumentException("Value can`t be negative");
         }
+        if (value == 0) {
+            throw new IllegalArgumentException("Value can`t be zero");
+        }
         this.date = date;
         this.value = value;
         this.name = name;
