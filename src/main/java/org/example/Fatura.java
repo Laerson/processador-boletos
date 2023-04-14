@@ -14,6 +14,10 @@ public class Fatura {
         if (value == 0) {
             throw new IllegalArgumentException("Value can`t be zero");
         }
+
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("Name can`t be empty");
+        }
         this.date = date;
         this.value = value;
         this.name = name;
