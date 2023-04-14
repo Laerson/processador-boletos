@@ -38,4 +38,12 @@ public class FaturaTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Name can`t be null");
     }
+
+    @Test
+    //Name can only contain letters
+    public void nameWithNumbers() {
+        assertThatThrownBy(() -> new Fatura(LocalDate.now(), 1_00, "Laerson 123"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Name can only contain letters");
+    }
 }
