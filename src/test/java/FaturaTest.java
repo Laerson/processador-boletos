@@ -14,4 +14,12 @@ public class FaturaTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Value can`t be negative");
     }
+
+    @Test
+    //Values can`t be zero
+    public void zeroValue() {
+        assertThatThrownBy(() -> new Fatura(LocalDate.now(), 0, "Laerson Saraiva Verissimo"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Value can`t be zero");
+    }
 }
