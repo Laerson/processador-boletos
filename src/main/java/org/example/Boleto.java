@@ -18,4 +18,18 @@ public class Boleto {
         this.date = date;
         this.value = value;
     }
+
+    //equals and hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Boleto boleto = (Boleto) o;
+        return id.equals(boleto.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

@@ -39,4 +39,12 @@ public class BoletoTest {
         Boleto boleto2 = new Boleto("123", LocalDate.now(), 1_00);
         assertThat(boleto1).isEqualTo(boleto2);
     }
+
+    @Test
+    //There can`t be two boletos with same id
+    public void sameId2() {
+        Boleto boleto1 = new Boleto("123", LocalDate.now(), 1_00);
+        Boleto boleto2 = new Boleto("123", LocalDate.now(), 1_00);
+        assertThat(boleto1.hashCode()).isEqualTo(boleto2.hashCode());
+    }
 }
