@@ -22,4 +22,12 @@ public class FaturaTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Value can`t be zero");
     }
+
+    @Test
+    //Name can`t be empty
+    public void emptyName() {
+        assertThatThrownBy(() -> new Fatura(LocalDate.now(), 1_00, ""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Name can`t be empty");
+    }
 }
