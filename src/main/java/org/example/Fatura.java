@@ -3,9 +3,13 @@ package org.example;
 import java.time.LocalDate;
 
 public class Fatura {
-    private LocalDate date;
-    private int value;
-    private String name;
+    final private LocalDate date;
+    final private int value;
+    final private String name;
+
+    private boolean isPaid = false;
+
+
 
     public Fatura(LocalDate date, int value, String name) {
         if (value < 0) {
@@ -27,7 +31,19 @@ public class Fatura {
         this.name = name;
     }
 
+    public Fatura(String name, int value) {
+        this(LocalDate.now(), value, name);
+    }
+
     public int getValue() {
         return value;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid() {
+        isPaid = true;
     }
 }

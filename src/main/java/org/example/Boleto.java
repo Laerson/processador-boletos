@@ -32,4 +32,8 @@ public class Boleto {
     public int hashCode() {
         return id.hashCode();
     }
+
+    public int getValue() {
+        return value;
+    }
 }
