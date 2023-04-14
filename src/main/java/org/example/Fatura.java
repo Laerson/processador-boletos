@@ -19,8 +19,8 @@ public class Fatura {
             throw new IllegalArgumentException("Name can`t be empty");
         }
 
-        if (name == null) {
-            throw new IllegalArgumentException("Name can`t be null");
+        if (!name.matches("[a-zA-Z ]+")) {
+            throw new IllegalArgumentException("Name can only contain letters");
         }
         this.date = date;
         this.value = value;

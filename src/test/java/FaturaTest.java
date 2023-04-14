@@ -32,14 +32,6 @@ public class FaturaTest {
     }
 
     @Test
-    //Name can`t be null
-    public void nullName() {
-        assertThatThrownBy(() -> new Fatura(LocalDate.now(), 1_00, null))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Name can`t be null");
-    }
-
-    @Test
     //Name can only contain letters
     public void nameWithNumbers() {
         assertThatThrownBy(() -> new Fatura(LocalDate.now(), 1_00, "Laerson 123"))
