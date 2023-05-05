@@ -89,7 +89,9 @@ public class FunctionalTest {
     }
 
     //Condition set 4:
-    //There is a boleto with value less or equal to zero
+    // fatura value greater than sum of boletos
+    // fatura value greater than or equal to zero
+    // there is at least one boleto with negative value
 
     //Actions:
     //Throw correct exception
@@ -101,13 +103,84 @@ public class FunctionalTest {
         List<Boleto> boletos = new ArrayList<>();
         boletos.add(new Boleto("3234", LocalDate.now(), 50));
         boletos.add(new Boleto("3235", LocalDate.now(), 50));
-        boletos.add(new Boleto("3236", LocalDate.now(), 50));
-        boletos.add(new Boleto("3237", LocalDate.now(), -50));
+        boletos.add(new Boleto("3236", LocalDate.now(), -50));
 
         //Act
         //Assert
         assertThatThrownBy(() -> ProcessadorBoletos.process(boletos, fatura))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Value can`t be zero");
+                .hasMessage("Value can`t be negative");
+    }
+
+    //Condition set 5:
+    // fatura value less than or equal to the sum of boletos
+    // fatura value greater than or equal to zero
+    // there is at least one boleto with negative value
+
+    //Actions:
+    //Throw correct exception
+
+    @Test
+    public void conditionSet5() {
+        //Arrange
+        Fatura fatura = new Fatura(LocalDate.now(), 50, "Laerson Saraiva Verissimo");
+        List<Boleto> boletos = new ArrayList<>();
+        boletos.add(new Boleto("4234", LocalDate.now(), 50));
+        boletos.add(new Boleto("4235", LocalDate.now(), 50));
+        boletos.add(new Boleto("4236", LocalDate.now(), -50));
+
+        //Act
+        //Assert
+        assertThatThrownBy(() -> ProcessadorBoletos.process(boletos, fatura))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Value can`t be negative");
+    }
+
+    //condition set 6:
+    // fatura value greater than sum of boletos
+    // fatura value is less than zero
+    // there is at least one boleto with negative value
+
+    //Actions:
+    //Throw correct exception
+
+    @Test
+    public void conditionSet6() {
+        //Arrange
+        Fatura fatura = new Fatura(LocalDate.now(), -50, "Laerson Saraiva Verissimo");
+        List<Boleto> boletos = new ArrayList<>();
+        boletos.add(new Boleto("5234", LocalDate.now(), -50));
+        boletos.add(new Boleto("5235", LocalDate.now(), -50));
+        boletos.add(new Boleto("5236", LocalDate.now(), -50));
+
+        //Act
+        //Assert
+        assertThatThrownBy(() -> ProcessadorBoletos.process(boletos, fatura))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Value can`t be negative");
+    }
+
+    //condition set 7:
+    // fatura value less than or equal to sum of boletos
+    // fatura value is less than zero
+    // there is at least one boleto with negative value
+
+    //Actions:
+    //Throw correct exception
+
+    @Test
+    public void conditionSet7() {
+        //Arrange
+        Fatura fatura = new Fatura(LocalDate.now(), -200, "Laerson Saraiva Verissimo");
+        List<Boleto> boletos = new ArrayList<>();
+        boletos.add(new Boleto("6234", LocalDate.now(), -50));
+        boletos.add(new Boleto("6235", LocalDate.now(), -50));
+        boletos.add(new Boleto("6236", LocalDate.now(), -50));
+
+        //Act
+        //Assert
+        assertThatThrownBy(() -> ProcessadorBoletos.process(boletos, fatura))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Value can`t be negative");
     }
 }
